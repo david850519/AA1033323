@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>2-2</title>
+</head>
+<body>
+	<!--使用ajax從後台抓出資料-->
+	<script type="text/javascript">
+	var xhr;
+	function run_ajax(){
+		//step1
+		xhr=new XMLHttpRequest();
+		if(xhr.overrideMimeType)
+		{
+		xhr.overrideMimeType("text/xml");
+		}
+		//step2
+		xhr.onreadystatechange=getData;
+		//step3
+		xhr.open("post","2-2.html",true);
+		xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
+		//step4
+		
+	}
+
+	function getData(){
+		if(xhr.readyState==4)
+			if(xhr.status==200)
+				document.getElementById("show").innerHTML=xhr.responseText;
+	}
+	</script>
+	<form>
+	<!--此為範例 請自行修改-->
+		<select name="YourLocation">
+　			<option value="Taipei">台北市</option>
+			<option value="Tainan">台南市</option>
+　			<option value="Kaohsiung">高雄市</option>
+		</select>
+		<span id="show">
+		<select name="area">			
+		</select>
+	</span>
+	</form>
+	<!--3-3題-->縣市+區域<input type="text" id="address"></br>
+	<!--加分題(需chrome可用)--><input type="button" value="下載">
+</body>
+</body>
+</html>
+<?php
+require 'config.php';
+
+
